@@ -8,6 +8,7 @@ from PySide6.QtWidgets import QMainWindow, QApplication,QDialog
 import sys
 # import pygame
 import time
+import webbrowser
 from mainwindow import Ui_MainWindow
 from result import Ui_Dialog2
 from loginwindow import Ui_Dialog1
@@ -43,7 +44,7 @@ class result(QDialog,Ui_Dialog2):
         QDialog.__init__(self,*args, **kwargs)
         self.setupUi(self)
         self.pushButton.clicked.connect(self.ok)
-        self.listWidget.addItem('found'+str(len(ips))+'ipadress:')
+        self.listWidget.addItem('found '+str(len(ips))+' ipadress:')
         for i in ips:
             self.listWidget.addItem(i)
 
@@ -78,6 +79,7 @@ class main_window(
         self.pushButton_6.clicked.connect(self.on_button_clicked4)
         self.pushButton_7.clicked.connect(self.on_button_clicked5)
         self.pushButton_8.clicked.connect(self.on_button_clicked6)
+        self.pushButton_9.clicked.connect(self.on_button_clicked7)
         try:
             with open(r'main.txt','r') as f:
                 self.textEdit.setText(f.read())
@@ -102,7 +104,6 @@ class main_window(
         self.listWidget.clear()
 
         def read_output(process):
-            """在后台线程中持续读取输出"""
             for line in iter(process.stdout.readline, ''):
                 if line:
                     self.listWidget_1.addItem(line.strip())
@@ -113,7 +114,6 @@ class main_window(
                       'Intense scan, all TCP ports': [nmap_path, '-p 1-65535', '-T4', '-A', '-v', str(ip)],
                       'Intense scan, no ping': [nmap_path, '-T4', '-A', '-v', '-Pn', str(ip)]
                       }
-        # 启动进程
         process = subprocess.Popen(
             args=nmap_order[str(self.comboBox.currentText())],
             stdout=subprocess.PIPE,
@@ -122,7 +122,6 @@ class main_window(
             creationflags=subprocess.CREATE_NO_WINDOW
         )
 
-        # 启动后台线程读取输出
         thread = threading.Thread(target=read_output, args=(process,), daemon=True)
         thread.start()
     def check(self):
@@ -131,7 +130,7 @@ class main_window(
             login=loginwindow()
             login.exec()
         if username=='admin' and password1=='qwedcxzas' and password2=='7355608':
-            self.label_8.setText('身份验证通过')
+            self.label_8.setText('Verification passed')
             check_pass = 1
             try:
                 process = subprocess.Popen(
@@ -161,7 +160,7 @@ class main_window(
             for i in nmap:
                 self.comboBox.addItem(i)
                 self.comboBox_2.addItem(i)
-            self.label_2.setText('初始化完成')
+            self.label_2.setText('init done')
 
             self.listWidget_2.clear()
             self.lineEdit_2.clear()
@@ -194,7 +193,6 @@ class main_window(
                 global analyze_data, flag, thread
 
                 def read_output(process):
-                    """在后台线程中持续读取输出"""
                     for line in iter(process.stdout.readline, ''):
                         self.listWidget_3.addItem(line.strip())
                         temp = str(line.strip())
@@ -203,7 +201,6 @@ class main_window(
 
                     process.stdout.close()
 
-                # 启动进程
                 process = subprocess.Popen(
                     args=[nmap_path, '-T4', '-A', '-v', str(ip)],
                     stdout=subprocess.PIPE,
@@ -212,7 +209,7 @@ class main_window(
                     creationflags=subprocess.CREATE_NO_WINDOW
                 )
 
-                # 🔥 启动后台线程读取输出
+
                 thread = threading.Thread(target=read_output, args=(process,), daemon=True)
                 thread.start()
             else:
@@ -246,6 +243,9 @@ class main_window(
             print(ips)
             results=result()
             results.exec()
+    def on_button_clicked7(self):
+        url='https://github.com/Evan-425/Net-tools-based-on-nmap'
+        webbrowser.open(url)
 app = QApplication(sys.argv)
 window = main_window()
 window.show()

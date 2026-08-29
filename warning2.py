@@ -28,10 +28,10 @@ class Ui_Dialog3(object):
         self.pushButton.setGeometry(QRect(10, 60, 221, 61))
         self.label = QLabel(Dialog)
         self.label.setObjectName(u"label")
-        self.label.setGeometry(QRect(110, 10, 31, 21))
+        self.label.setGeometry(QRect(90, 10, 101, 21))
         self.label_2 = QLabel(Dialog)
         self.label_2.setObjectName(u"label_2")
-        self.label_2.setGeometry(QRect(70, 30, 131, 41))
+        self.label_2.setGeometry(QRect(30, 30, 171, 41))
 
         self.retranslateUi(Dialog)
 
@@ -40,8 +40,8 @@ class Ui_Dialog3(object):
 
     def retranslateUi(self, Dialog):
         Dialog.setWindowTitle(QCoreApplication.translate("Dialog", u"Dialog", None))
-        self.pushButton.setText(QCoreApplication.translate("Dialog", u"\u786e\u8ba4", None))
-        self.label.setText(QCoreApplication.translate("Dialog", u"\u8b66\u544a!", None))
-        self.label_2.setText(QCoreApplication.translate("Dialog", u"  \u5185\u5bb9\u4e3a\u7a7a\uff0c\u4e0d\u53ef\u8fd0\u884c", None))
+        self.pushButton.setText(QCoreApplication.translate("Dialog", u"OK", None))
+        self.label.setText(QCoreApplication.translate("Dialog", u"Warning", None))
+        self.label_2.setText(QCoreApplication.translate("Dialog", u"Content is empty, cannot run", None))
     # retranslateUi
 

@@ -23,33 +23,33 @@
     </rect>
    </property>
    <property name="text">
-    <string>确认</string>
+    <string>OK</string>
    </property>
   </widget>
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>110</x>
+     <x>100</x>
      <y>10</y>
-     <width>31</width>
+     <width>101</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>警告!</string>
+    <string>warning！</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>90</x>
+     <x>60</x>
      <y>30</y>
-     <width>111</width>
+     <width>161</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string> 程序未初始化</string>
+    <string>please initialize first</string>
    </property>
   </widget>
  </widget>
