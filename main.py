@@ -6,7 +6,6 @@ import time
 
 from PySide6.QtWidgets import QMainWindow, QApplication,QDialog
 import sys
-# import pygame
 import time
 import webbrowser
 from mainwindow import Ui_MainWindow
