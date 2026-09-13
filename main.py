@@ -3,7 +3,7 @@ import sys
 import subprocess
 import threading
 import time
-
+import pyperclip
 from PySide6.QtWidgets import QMainWindow, QApplication,QDialog
 import sys
 import time
@@ -44,12 +44,15 @@ class result(QDialog,Ui_Dialog2):
         self.setupUi(self)
         self.pushButton.clicked.connect(self.ok)
         self.listWidget.addItem('found '+str(len(ips))+' ipadress:')
+        self.listWidget.addItem('click OK to copy result in to copyboard')
         for i in ips:
             self.listWidget.addItem(i)
 
     def ok(self):
+        text = ips
+        pyperclip.copy(text)
+        print(pyperclip.paste())
         self.close()
-
 class Warning_init(QDialog, Ui_Dialog):
     def __init__(self,*args, **kwargs):
         QDialog.__init__(self,*args, **kwargs)
